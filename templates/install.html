@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <title>
+            安装程序 | Setup
+        </title>
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .bd-placeholder-img { font-size: 1.125rem; text-anchor: middle; -webkit-user-select:
+            none; -moz-user-select: none; user-select: none; } @media (min-width: 768px)
+            { .bd-placeholder-img-lg { font-size: 3.5rem; } }
+            .container {
+  max-width: 960px;
+}
+        </style>
+    </head>
+    
+    <body class="bg-light">
+        <div class="container">
+            <main>
+                <div class="py-5 text-center">
+                    <a href="https://github.com/ImJingLan/dictum"><img class="d-block mx-auto mb-4" src="{{ url_for('static', filename = 'images/logo.svg') }}" alt="" width="80" height="80"></a>
+                    <h2>
+                        安装程序 | Setup
+                    </h2>
+                    <p class="lead">
+                        我们需要收集一些信息来进行安装
+                    </p>
+                </div>
+                <div id='forms' class="row g-6">
+                    <form action="#" method="post">
+                        <div class="col-md-12 col-lg-12">
+                            <h4 class="mb-3">
+                                数据库
+                            </h4>
+                                
+                                <div class="row g-3">
+
+                                    <h4 class="mb-3">
+                                        站点信息
+                                    </h4>
+                                    <div>
+                                        <div class="col-12">
+                                            <label for="sitename" class="form-label">
+                                                站点名称
+                                            </label>
+                                            <div class="input-group has-validation">
+                                                <input type="text" class="form-control" name="sitename" required>
+                                                <div class="invalid-feedback">
+                                                    你需要提供站点名称
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <h4 class="mb-3">
+                                        管理员信息
+                                    </h4>
+                                    <div>
+                                        <div class="col-12">
+                                            <label for="username" class="form-label">
+                                                管理员用户名
+                                            </label>
+                                            <div class="input-group has-validation">
+                                                <input type="text" class="form-control" name="username" required>
+                                                <div class="invalid-feedback">
+                                                    你需要提供管理员用户名
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <label for="dbpasswd" class="form-label">
+                                                管理员密码
+                                            </label>
+                                            <div class="input-group has-validation">
+                                                <input type="password" class="form-control" name="passwd" placeholder="" required>
+                                                <div class="invalid-feedback">
+                                                    你需要提供管理员密码
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <label for="mgemail" class="form-label">
+                                                管理员邮箱
+                                            </label>
+                                            <div class="input-group has-validation">
+                                                <input type="text" class="form-control" name="email" required>
+                                                <div class="invalid-feedback">
+                                                    你需要提供管理员邮箱
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <hr class="my-4">
+                                    <small class="text-muted">
+                                                安装即表示你已阅读并<b>完全同意</b><a href="//github.com/imjinglan/imjinglan/dictum.md">DICTUM 用户须知</a>
+                                    </small>
+                                    <button class="w-100 btn btn-primary btn-lg" onclick=setup()>
+                                        安装
+                                    </button>
+                                    
+                            </div>
+                        </div>
+                    <form>
+                </div>
+
+                <div id='finish1' class="row g-6" style="display:none">
+                    <div class="col-md-12 col-lg-12">
+                        <h4 class="mb-3">
+                            <span id="title1"></span>
+                        </h4>
+                        <p>
+                            <span id="notice1"></span>
+                        </p>
+                    </div>
+                </div>
+
+
+            </main>
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">
+                    &copy; 2021–<script>document.write(new Date().getFullYear())</script> Dictum Team
+                </p>
+            </footer>
+            </div>
+            <script src="../assets/dist/js/bootstrap.bundle.min.js">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            </script>
+            
+    </body>
+
+</html>

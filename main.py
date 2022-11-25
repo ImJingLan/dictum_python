@@ -10,7 +10,7 @@ def salt(times):
     rawsalts = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
     salts = ''
     for i in range(0, times):
-        salts = salts + rawsalts[int(randint(0, 62))-1]
+        salts = salts + rawsalts[int(randint(0, 62)) - 1]
     return salts
 
 
@@ -34,8 +34,7 @@ def dictums():
 def site_info():
     con = sqlite3.connect("./datebase.db")
     cur = con.cursor()
-    result = cur.execute(
-        'SELECT * FROM dic_siteinfo').fetchall()
+    result = cur.execute('SELECT * FROM dic_siteinfo').fetchall()
     con.commit()
     cur.close()
     con.close()
@@ -47,7 +46,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', sitename=site_info()[1])
+    con = sqlite3.connect("./datebase.db")
+    cur = con.cursor()
+
+    listOfTables1 = cur.execute(
+        """SELECT name FROM sqlite_master WHERE type='table'
+  AND name='dic_dictum'; """).fetchall()
+    listOfTables2 = cur.execute(
+        """SELECT name FROM sqlite_master WHERE type='table'
+  AND name='dic_users'; """).fetchall()
+    listOfTables3 = cur.execute(
+        """SELECT name FROM sqlite_master WHERE type='table'
+  AND name='dic_siteinfo'; """).fetchall()
+    if listOfTables1 == [] or listOfTables2 == [] or listOfTables3 == []:
+        return render_template('install_none.html')
+    else:
+        sitename = site_info()[1]
+    return render_template('index.html', sitename=sitename)
 
 
 @app.route('/api/', methods=['POST', 'GET'])
@@ -77,7 +92,7 @@ def install():
         listOfTables3 = cur.execute(
             """SELECT name FROM sqlite_master WHERE type='table'
   AND name='dic_siteinfo'; """).fetchall()
-        if listOfTables1 == [] and listOfTables2 == []:
+        if listOfTables1 == [] and listOfTables2 == [] and listOfTables3 == []:
             sql = '''CREATE TABLE dic_dictum (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             author VARCHAR(30) NOT NULL,
@@ -119,7 +134,7 @@ def install():
             con.commit()
 
             sql = """INSERT INTO dic_siteinfo (title, describe, keywords)
-            VALUES('"""+data['sitename']+"""', 'Dictum语录站', 'Dictum,语录')"""
+            VALUES('""" + data['sitename'] + """', 'Dictum语录站', 'Dictum,语录')"""
             cur.execute(sql)
             con.commit()
 
@@ -133,7 +148,7 @@ def install():
             con.commit()
             cur.close()
             con.close()
-        return render_template('installdone.html')
+        return render_template('install_done.html')
 
     else:
         return render_template('install.html')

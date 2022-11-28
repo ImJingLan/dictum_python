@@ -70,28 +70,26 @@ def api():
     return dictums()
 
 
-@app.route('/random/')
-def random():
-    return
-
-
 @app.route('/install/', methods=['POST', 'GET'])
 def install():
+    con = sqlite3.connect("./datebase.db")
+    cur = con.cursor()
+
+    listOfTables1 = cur.execute(
+        """SELECT name FROM sqlite_master WHERE type='table'
+  AND name='dic_dictum'; """).fetchall()
+    listOfTables2 = cur.execute(
+        """SELECT name FROM sqlite_master WHERE type='table'
+  AND name='dic_users'; """).fetchall()
+    listOfTables3 = cur.execute(
+        """SELECT name FROM sqlite_master WHERE type='table'
+  AND name='dic_siteinfo'; """).fetchall()
+    cur.close()
+    con.close()
     if request.method == 'POST':
         data = request.form
-
         con = sqlite3.connect("./datebase.db")
         cur = con.cursor()
-
-        listOfTables1 = cur.execute(
-            """SELECT name FROM sqlite_master WHERE type='table'
-  AND name='dic_dictum'; """).fetchall()
-        listOfTables2 = cur.execute(
-            """SELECT name FROM sqlite_master WHERE type='table'
-  AND name='dic_users'; """).fetchall()
-        listOfTables3 = cur.execute(
-            """SELECT name FROM sqlite_master WHERE type='table'
-  AND name='dic_siteinfo'; """).fetchall()
         if listOfTables1 == [] and listOfTables2 == [] and listOfTables3 == []:
             sql = '''CREATE TABLE dic_dictum (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -148,10 +146,20 @@ def install():
             con.commit()
             cur.close()
             con.close()
-        return render_template('install_done.html')
+            return render_template('install/install_done.html')
+        else:
+            return render_template('install/install_has_done.html')
 
     else:
-        return render_template('install.html')
+        if listOfTables1 == [] and listOfTables2 == [] and listOfTables3 == []:
+            return render_template('install/install.html')
+        else:
+            return render_template('install/install_has_done.html')
+
+
+@app.route("/dashboard/")
+def dashboard():
+    return render_template('dashboard/main.html')
 
 
 if __name__ == "__main__":

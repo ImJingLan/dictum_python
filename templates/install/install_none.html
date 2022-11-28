@@ -1,0 +1,83 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <title>安装程序 | Setup</title>
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .container {
+        max-width: 960px;
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div class="container">
+      <main>
+        <div class="py-5 text-center">
+          <a href="https://github.com/ImJingLan/dictum"
+            ><img
+              class="d-block mx-auto mb-4"
+              src="{{ url_for('static', filename = 'images/logo.svg') }}"
+              alt=""
+              width="80"
+              height="80"
+          /></a>
+          <h2>警告</h2>
+          <p class="lead">你的站点未完全安装</p>
+        </div>
+        <div class="row g-6">
+          <form action="#" method="post">
+            <div class="col-md-12 col-lg-12">
+              <h4 class="mb-3">你的站点未完全安装</h4>
+              <h4 class="mb-3"></h4>
+              <div class="row g-3">
+                <a class="w-100 btn btn-primary btn-lg" href="./install/"
+                  >点我进入安装程序</a
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div id="finish1" class="row g-6" style="display: none">
+          <div class="col-md-12 col-lg-12">
+            <h4 class="mb-3">
+              <span id="title1"></span>
+            </h4>
+            <p>
+              <span id="notice1"></span>
+            </p>
+          </div>
+        </div>
+      </main>
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">
+          © 2021–
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          2022 Dictum Team
+        </p>
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </body>
+</html>

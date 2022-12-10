@@ -1,3 +1,4 @@
+<h1 align="center" style="color:red"><strong>Warning:</strong> This Version Will Be Updated After PHP ver. Developed Done</h1>
 <h1 align="center"><img src="https://raw.githubusercontent.com/ImJingLan/dictum/master/assets/brand/logo.svg" width="50">Dictum Python ver.</h1>
 <p align="center">
   <a href="./LICENSE"><img alt="LICENSE MIT" src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge"></a>
